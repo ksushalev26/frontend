@@ -1,59 +1,61 @@
 var request = require('request');
-var http = require('http');
-var port = 3000;
-var result = 0;
-var express = require('express');
-var app = express();
-var resObj = [];
-var baseCurrencyUS = 0;
+var Converter = require('./converter');
 
 
-request('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=3&fbclid=IwAR11i1U07wwN-gpaZUCj0BEzqfZ-yMXTsS_lIBzt3UEHFVkYI8V0OHnU1BQ', function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-        result = body;
+function getCurrencyUS(callback) {
+    request('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=3&fbclid=IwAR11i1U07wwN-gpaZUCj0BEzqfZ-yMXTsS_lIBzt3UEHFVkYI8V0OHnU1BQ', { json: true }, function (error, response, body) {
+    if (!error && response.statusCode == 200) { 
+        console.log(body); 
+        var baseCurrencyUS = 0;          
+        baseCurrencyUS = parseFloat(body[2].sale);
+        console.log(baseCurrencyUS);
     } else {
         console.warn(error);
     }
-});
+    callback (baseCurrencyUS);  
+    });       
+}
 
-http.createServer(function (req, res) {
-    res.write(result);
-    res.end();    
-}).listen(port, function () { 
-    console.log('Server at http://localhost:3000');
-});
-
-app.get('/', function (req, res) {
-    res.send('Hello world!')
-});
-
-app.get('/courses', function (req, res) {
-    res.send(result);
-    console.log(typeof result);
-    resObj = JSON.parse(result);
-    console.log(resObj);    
-});
-
-app.get('/courses/:ccy', function (req, res) {
-    console.log(req.params)
-    var course = resObj.find(function (course) {        
-        return course.ccy === req.params.ccy;        
-    });    
-    res.send(course);
-    console.log(course);
-    for (var base in course) {
-        baseCurrencyUS = course['sale'];
-    }
-    
-    var Converter = require('./converter');    
-    var conv = new Converter(baseCurrencyUS);
-    
+getCurrencyUS(function(data) {    
+    var conv = new Converter(data);    
     console.log(conv.convertToUa(1000));
     console.log(conv.convertToUs(1000));
-});
-
-app.listen(3001, function () {
-    console.log('Server on http://localhost:3001')
-});
+})
 
 
+
+
+
+
+     
+    
+
+
+
+
+// var Converter = require('./converter');
+// var request = require('request');
+
+// getCurrencyUS(function(data){
+//     createObj(data)
+// })
+
+// function getCurrencyUS(callback){
+//     request('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5', { json: true }, function (error, res, body) {
+//         var baseCurrencyUS = null;
+//         if (!error && res.statusCode == 200) {
+//             console.log(body);
+//         baseCurrencyUS = parseFloat(body[0].sale) 
+//         } else {
+//             baseCurrencyUS = 27;
+//         }
+//         callback(baseCurrencyUS) 
+//     })
+// }
+
+
+// function createObj(data){
+//     var conv = new Converter(data);
+//     console.log(conv.convertToUa(1000))
+//     console.log(conv.convertToUs(1000))
+// }
