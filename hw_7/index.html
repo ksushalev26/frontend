@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<script src="/socket.io/socket.io.js"></script>
+    <title>Io chat</title>
+    <style>
+			body {
+				margin-top: 30px;
+			}
+			#messageArea {
+				display: none;
+			}
+		</style>
+</head>
+<body>
+  <div class="container">
+		<div id="userFormArea" class="row">
+			<div class="col-md-12">
+					<form id="userForm">
+							<div class="form-group">
+								<label>Enter Username</label>
+								<input class="form-control" id="userName">
+								<br>
+								<button type="button" class="btn btn-primary" id="btnLogin">Login</button>
+							</div>
+						</form>
+			</div>
+		</div>
+		<div id="messageArea" class="row">
+			<div class="col-md-4">
+				<div class="well">
+					<h3>Online Users</h3>
+					<ul class="list-group" id="users"></ul>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="chat" id="chat"></div>
+
+				<form id="messageForm">
+					<div class="form-group">
+						<label>Enter Message</label>
+						<textarea class="form-control" id="message"></textarea>
+						<br>
+						<button type="button" class="btn btn-primary" id="btnSend">Send Message</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		var socket = io();
+		
+		var socket = io.connect();
+		var messageForm = document.getElementById('messageForm');
+		var message = document.getElementById('message');
+		var chat = document.getElementById('chat');
+		var btnSend = document.getElementById('btnSend');
+		var userForm = document.getElementById('userForm');
+		var userFormArea = document.getElementById('userFormArea');
+		var messageArea = document.getElementById('messageArea');
+		var users = document.getElementById('users');
+		var userName = document.getElementById('userName');
+
+		btnSend.addEventListener('click', function(e){
+			e.preventDefault();
+			console.log('Submitted');
+			socket.emit('send message', message.value);
+			message.value ='';			
+		});
+		
+
+		socket.on('new message', function(data) {
+			chat.innerHTML+='<div class="well"><strong>' + data.user + '</strong>: ' + data.message + '</div>';
+		});
+
+		btnLogin.addEventListener('click', function(e){
+			e.preventDefault();
+			console.log('Submitted');
+			socket.emit('new user', userName.value, function(data) {
+				if (data) {
+					userFormArea.style.display = 'none';
+					messageArea.style.display = 'block';
+				}
+			});
+			userName.value ='';			
+		});
+
+		socket.on('get users', function(data) {
+			//var html = '';
+			for (var i = 0; i < data.length; i++) {
+				users.innerHTML += '<li class="list-group-item">' + data[i] + '</li>';
+			}
+		});
+	
+	</script>
+</body>
+</html>
