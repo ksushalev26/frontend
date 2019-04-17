@@ -1,0 +1,22 @@
+<%- include layouts/header.ejs %>
+<form method="POST" action="/customers/edit/<%= data[0].id %>">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input class="form-control" id="exampleInputEmail1" placeholder="Name" type="text" name="name" value="<%= data[0].name %>" required>
+    </div>
+    <div class="form-group">
+            <label for="name">Address</label>
+            <textarea class="form-control" row="3" name="address" required cols="30"><%= data[0].address %></textarea>
+    </div>
+    <div class="form-group">
+            <label for="exampleInputEmail1">Email</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="email" name="email" value="<%= data[0].email %>" required>
+    </div>
+    <div class="form-group">
+            <label for="exampleInputEmail1">Phone</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="phone" name="phone" value="<%= data[0].phone %>" required>
+    </div>
+    <button type="submit" class="btn btn-default" name="submit" value="Save">Edit</button>
+    <button type="submit" class="btn btn-default" name="cancel" value="Cancel" onclick="window.location.href = '/customers';">Cancel</button>
+</form>
+<%- include layouts/footer.ejs %>
