@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="main.js"></script>
+    <style type="text/css">     
+        section {
+            border: 1px solid black;
+            position: relative;
+            height: 400px;
+            width: 600px;
+        }
+
+        div {
+            position: absolute;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;           
+        }
+
+        .green {
+            background: green;
+        }
+
+        .red {
+            background: red;
+        }
+
+        .blue {
+            background: blue;
+        }
+        
+    </style>
+</head>
+<body>
+    <button id="addBall">Add ball</button>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <section id = 'canvas'></section>
+</body>
+</html>

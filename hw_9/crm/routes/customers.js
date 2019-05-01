@@ -31,9 +31,9 @@ module.exports.save = function(req, res) {
             email: input.email,
             phone: input.phone
         };
-        // let sql = `INSERT INTO customers (name, adress, email, phone) VALUES ('${data.name}', '${data.address}', '${data.email}', '${data.phone}')`;
-        let sql = `INSERT INTO customers SET ?`;
-        connection.query(sql, [data],  function(err, rows) {
+        //let sql = `INSERT INTO customers (name, adress, email, phone) VALUES ('${data.name}', '${data.address}', '${data.email}', '${data.phone}')`;
+        //let sql = `INSERT INTO customers SET ?`;
+        connection.query('INSERT INTO customers SET ?', [data],  function(err, rows) {
             if (err) throw new Error;
             console.log("Number of records inserted: " + rows.affectedRows);
             res.redirect('/cusromers');

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    
+    <!--
+        Задание.
+        Используя jQuery реализуйте генерацию списка библиографии после статьи. Результат должен быть как на снимке "результат".
+        Снимок рядом с этим файлом
+    -->
+
+    
+    <script>
+      $(function() {
+
+        var p = $('<p>Веб-сайты, упомянутые в нашем документе:</p>');
+
+        var ul = ('<ul></ul>');
+
+        p.insertAfter('p:first');
+
+        //var text = $('a').text();
+
+       
+
+        $('a').each(function() {
+          var current = $(this);
+         
+          $('p:eq(1)')
+          .append(ul)
+          .append('<li>' + '<strong>' + current.text() + ': ' + '</strong>' +  current.attr('href') + '</li>');
+          
+        });
+
+      
+
+        
+
+        
+
+        // $('<p>Веб-сайты, упомянутые в данном документе:</p>').insertAfter($('p'));        
+        
+        // var f = $('a[href^="http"]');
+        
+        // for (var i = 0; i < f.length; i++) {
+        //   console.log(f[i]);
+        // };
+        
+        // var elem = $('<ul></ul>');
+        // $('p:eq(1)').append(elem);
+        // var text = ['Yahoo!:', 'Google:', 'Hampster Dance:'];
+        // for (var i = 0; i < 3; i++) {
+        //   elem.append('<li>', text[i] + " " + f[i]);          
+        // };
+        // $('ul').css('font-weight', 'bold')
+        
+      });
+      
+      
+    </script>
+</head>
+
+<body>
+<div class="wrapper">
+    <div class="content">
+        <div class="main">
+            <h1>Динамически созданная библиография</h1>
+            <p>Существует много фантастических веб-сайтов. <a href="http://www.yahoo.com/">Yahoo!</a> приходит на ум,
+                как и <a href="http://www.google.com/">Google</a>. Мало, кто забудет влияние, оказанное на культуру
+                сайтом <a href="http://www.hampsterdance.com/">Hampster Dance</a>.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
