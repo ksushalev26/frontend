@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "firstName": "FrigQ",
+      "lastName": "Q",
+      "password": "Q",
+      "phone": "Q"
+    },
+    {
+      "id": "6",
+      "firstName": "Oksana",
+      "lastName": "Naumova",
+      "password": "hui",
+      "phone": "+380442536258"
+    },
+    {
+      "id": "1iAagtA",
+      "firstName": "Oksana",
+      "lastName": "Oksana",
+      "password": "Oksana",
+      "phone": "Oksana"
+    },
+    {
+      "firstName": "Oksana",
+      "lastName": "Naumova",
+      "password": "",
+      "phone": "+380442536258",
+      "id": "z49jRh5"
+    },
+    {
+      "id": "SF76_I7",
+      "firstName": "Oksana",
+      "lastName": "",
+      "password": "",
+      "phone": ""
+    }
+  ]
+}

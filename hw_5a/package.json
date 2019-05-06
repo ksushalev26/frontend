@@ -1,0 +1,17 @@
+{
+  "name": "hw_5a",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "lite-server",
+    "server": "json-server --watch db.json --port 4000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^0.14.2",
+    "lite-server": "^2.4.0"
+  }
+}
