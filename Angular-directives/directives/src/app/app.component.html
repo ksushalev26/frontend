@@ -1,0 +1,18 @@
+<div>
+  <ul *ngFor="let person of people" [ngSwitch]="person.country">
+    <li *ngSwitchCase="'USA'" class="green">
+      {{ person.nsme }} ({{ person.country }})
+    </li>
+    <li *ngSwitchCase="'GB'" class="red">
+      {{ person.nsme }} ({{ person.country }})
+    </li>
+    <li *ngSwitchCase="'Ukraine'" class="blue">
+      {{ person.nsme }} ({{ person.country }})
+    </li>
+    <li *ngSwitchDefault class="default">
+      {{ person.nsme }} ({{ person.country }})
+    </li>
+  </ul>
+</div>
+
+<app-some [textClass]="'some-class'" [textWeight] = "'bold'"></app-some>
