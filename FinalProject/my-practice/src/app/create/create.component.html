@@ -1,0 +1,50 @@
+<div class="jumbotron">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-6 offset-md-3">
+             <h1>Create User</h1>
+             <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+             
+             <div class="form-group">
+                <label>
+                First Name:                    
+                </label>
+                <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" placeholder="First Name" >  
+                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                   <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                </div>
+             </div>
+             <div class="form-group">
+                <label>
+                Last Name:
+                </label>
+                <input type="text" formControlName="lastName" class="form-control" placeholder="Last Name">                    
+             </div>
+             <div class="form-group">
+                <label>
+                Age:                
+                </label>
+                <input type="text" formControlName="age" class="form-control">
+             </div>
+             <div class="form-group">
+                <label>
+                Profession:                      
+                </label>
+                <input type="text" formControlName="profession" class="form-control"> 
+             </div>
+             <div class="form-group">
+                <button class="btn btn-primary btn-space" routerLink="">Back</button>
+                <button class="btn btn-primary btn-space" type="submit" (click)="addUser()">Add</button>
+                <!-- <button class="btn btn-primary" type="submit" [disabled]="!createForm.valid">Submit</button> -->
+             </div>
+             </form>
+             <p>
+                Form Value: {{ createForm.value | json }} 
+             </p>
+             <p>
+                Form Status: {{ createForm.status }}
+             </p>
+          </div>
+       </div>
+    </div>
+ </div>

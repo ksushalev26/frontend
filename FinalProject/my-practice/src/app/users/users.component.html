@@ -1,0 +1,26 @@
+<div class="jumbotron">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-9">
+               <ul class="list-group">
+                  <h1>USERS</h1>
+                  <li class="list-group-item" *ngFor="let user of users">
+                     <div class="row">
+                        <div class="col-md-9" (click)="openReadDialog(user)">{{ user.firstName }}</div>
+                        <div class="col-md-3">
+                           <button class="btn btn-light btn-space" [routerLink]="['/update', user.id]">Update</button>
+                           <button class="btn btn-secondary btn-space" (click)="openDeleteDialog(user.id)">Delete</button>
+                        </div>
+                     </div>
+                  </li>
+               </ul>
+               
+            </div>
+         </div>
+         <div class="row">
+               <div class="col-md-9">
+                     <button class="btn btn-light btn-space" routerLink="create">Create</button>              
+               </div>
+         </div>
+      </div>
+   </div>

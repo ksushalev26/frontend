@@ -1,0 +1,6 @@
+input.ng-touched.ng-invalid{
+    border-color: red;
+}
+.btn-space {
+    margin-left: 25%;
+}

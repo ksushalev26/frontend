@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "id": 3,
+      "firstName": "Alessia",
+      "lastName": "Popova",
+      "age": "25",
+      "profession": "pupil"
+    },
+    {
+      "id": 7,
+      "firstName": "Svetlana",
+      "lastName": "Popova",
+      "age": "25",
+      "profession": "student"
+    },
+    {
+      "id": 8,
+      "firstName": "Helen",
+      "lastName": "Nil",
+      "age": "23",
+      "profession": "student"
+    },
+    {
+      "id": 9,
+      "firstName": "Evgenia",
+      "lastName": "Savenko",
+      "age": "33",
+      "profession": "economist"
+    },
+    {
+      "id": 10,
+      "firstName": "Inna",
+      "lastName": "Mix",
+      "age": "39",
+      "profession": "meneger"
+    }
+  ]
+}
